@@ -1,0 +1,40 @@
+Dlib is a C++ library which contains Machine Learning Algorithms.
+face_recognition lib works using Dlib library.
+
+image = face_recognition.load_image_file(obama_pic)
+face_locations = face_recognition.face_locations(image)
+
+executing the above code returns a list of coordinates of faces.
+loading image as a numpy d array, same as that of imread of cv2. (using face recognition to load is better)
+returns coordinates ,as a tuple of 4 values, top, right, bottom, left
+draw boxes around it using cv2.rectangle(image, top, left, bottom, right, (b, g, r),width))
+
+face_recognition.face_encodings(image, boxes) returns a list of arrays of 128 values, a  ndarray for each face
+nd arrays are numpy arrays, like list but consumes less space and are homogeneous, here the store float64 data type.
+
+face_recognition.compare_faces([knownEncodings],encodings_to_check) returns a list of true/false.
+[knownEncodings] contains encodings of multiple faces that we know.
+encodings_to_check contains encoding of single face that we need to check
+true in the list indicates that there is a face that is similar.
+
+codecs are formats/instructions for storing frames.
+splitting of images for extracting video clips takes about 10 min of time because of encoding and decoding
+use moviepy to cut clips from a video, generating a clip takes only 0.250 sec
+install moviepy by
+
+pip install --trusted-host pypi.python.org moviepy
+pip install imageio-ffmpeg
+
+for 1 image :
+loading image : 0.156 sec
+
+locating faces (hog) : 2.184 sec
+locating faces (viola jhones) : 0.447 sec
+
+getting encodings (for 4 faces) : 1.926 sec
+comparing faces : 0.001 sec
+
+for one image with one face in it, it takes 1 sec aprox for the whole process (loading, detecting, encoding, recognizing)
+
+creating a video capture obj takes : 0.8 sec
+loading a single image : 0.375 sec

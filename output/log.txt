@@ -1,0 +1,3 @@
+Moviepy - Running:
+>>> "+ " ".join(cmd)
+Moviepy - Command successful
